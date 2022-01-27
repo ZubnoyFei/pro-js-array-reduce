@@ -4,9 +4,10 @@
  Фишка задания сделать свою реализацию, чтобы понять, как он работает под капотом. Для перебора нужно делать через метод массива reduce
  Помните, что вы передаете функцию, которая ожидает 3 аргумента, текущий элемент, индекс и сам массив. Автоматическая проверка будет это учитывать.
 */
-function map(array, callback) {
+let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const map1 = numbers.map(x => x * 2);
 
-}
+console.log(map1);
 
 /* Функция принимает в себе первым аргументом массив, вторым функцию которая будет вызываться для каждого элемента массива
  вот документация https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
@@ -14,9 +15,9 @@ function map(array, callback) {
  Фишка задания сделать свою реализацию, чтобы понять, как он работает под капотом. Для перебора нужно делать через метод массива reduce
  Помните, что вы передаете функцию, которая ожидает 3 аргумента, текущий элемент, индекс и сам массив. Автоматическая проверка будет это учитывать.
 */
-function filter(array, callback) {
-
-}
+let words = ['joy', 'bunk', 'mars', 'curiosity', 'uranus'];
+const result = words.filter(word => word.length > 2);
+console.log(result);
 
 /* Функция принимает в себе первым аргументом массив, вторым функцию которая будет вызываться для каждого элемента массива
  вот документация https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some
@@ -24,9 +25,13 @@ function filter(array, callback) {
  Фишка задания сделать свою реализацию, чтобы понять, как он работает под капотом. Для перебора нужно делать через метод массива reduce
  Помните, что вы передаете функцию, которая ожидает 3 аргумента, текущий элемент, индекс и сам массив. Автоматическая проверка будет это учитывать.
 */
-function some(array, callback) {
 
+function isBiggerThan8(element, index, array) {
+  return element > 8;
 }
+
+[2,0,4,6,1,3].some(isBiggerThan8); 
+
 
 /* Функция принимает в себе первым аргументом массив, вторым функцию которая будет вызываться для каждого элемента массива
  вот документация https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some
