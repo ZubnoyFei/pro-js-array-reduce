@@ -4,10 +4,16 @@
  Фишка задания сделать свою реализацию, чтобы понять, как он работает под капотом. Для перебора нужно делать через метод массива reduce
  Помните, что вы передаете функцию, которая ожидает 3 аргумента, текущий элемент, индекс и сам массив. Автоматическая проверка будет это учитывать.
 */
-let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const map1 = numbers.map(x => x * 2);
+function map(array, callback) {
+  const mapResult = [];
+  array.reduce((previous, current, index, array) => {
+         previous.push(callback(current, index, array));
+      return previous;
 
-console.log(map1);
+
+  }, mapResult);
+  return mapResult;
+}
 
 /* Функция принимает в себе первым аргументом массив, вторым функцию которая будет вызываться для каждого элемента массива
  вот документация https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
@@ -15,9 +21,19 @@ console.log(map1);
  Фишка задания сделать свою реализацию, чтобы понять, как он работает под капотом. Для перебора нужно делать через метод массива reduce
  Помните, что вы передаете функцию, которая ожидает 3 аргумента, текущий элемент, индекс и сам массив. Автоматическая проверка будет это учитывать.
 */
-let words = ['joy', 'bunk', 'mars', 'curiosity', 'uranus'];
-const result = words.filter(word => word.length > 2);
-console.log(result);
+function filter(array, callback) {
+  const resultOfFilter = [];
+
+  array.reduce((prev, curr, index, array) => {
+      if (callback(curr, index, array)) {
+          prev.push(curr);
+      }
+      return prev;
+
+  }, resultOfFilter);
+
+  return resultOfFilter;
+}
 
 /* Функция принимает в себе первым аргументом массив, вторым функцию которая будет вызываться для каждого элемента массива
  вот документация https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some
@@ -26,12 +42,15 @@ console.log(result);
  Помните, что вы передаете функцию, которая ожидает 3 аргумента, текущий элемент, индекс и сам массив. Автоматическая проверка будет это учитывать.
 */
 
-function isBiggerThan8(element, index, array) {
-  return element > 8;
+function some(array,callback) {
+  const resultOfSome = array.reduce((previous,current,index,array) => {
+    if(!previous) {
+      return callback(current,index,array);
+    }
+    return previous;
+  }, false);  
+  return resultOfSome;
 }
-
-[2,0,4,6,1,3].some(isBiggerThan8); 
-
 
 /* Функция принимает в себе первым аргументом массив, вторым функцию которая будет вызываться для каждого элемента массива
  вот документация https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some
@@ -40,8 +59,18 @@ function isBiggerThan8(element, index, array) {
  Помните, что вы передаете функцию, которая ожидает 3 аргумента, текущий элемент, индекс и сам массив. Автоматическая проверка будет это учитывать.
 */
 function every(array, callback) {
+  const resultOfEvery = array.reduce((previous, current, index, array) => {
+    if (previous) {
+        return callback(current, index, array);
 
+    }
+    return previous;
+
+}, true)
+return resultOfEvery
 }
+
+
 
 // Эту часть не удаляем, она важна для проверки результата
 module.exports = {
